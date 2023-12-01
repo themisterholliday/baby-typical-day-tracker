@@ -156,5 +156,6 @@ export function get_calendar_info(
     current_row = new_current_row;
   }
 
+  console.log(items);
   return items;
 }
