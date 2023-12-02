@@ -9,7 +9,9 @@
   import CalendarFrame from './CalendarFrame.svelte';
   import TimeIndicator from './TimeIndicator.svelte';
 
-  const currentHour = new Date().getHours(); // Hours in 24-hour format (0-23)
+  const current_minute = new Date().getMinutes();
+  const half_hour_addition = current_minute >= 30 ? 0.5 : 0;
+  const current_hour = new Date().getHours() + half_hour_addition; // Hours in 24-hour format (0-23)
 
   // Initialize hour_offset from local storage or default to current hour
   let hour_offset = parseInt(localStorage.getItem('hour_offset') ?? '0') || 0;
@@ -70,7 +72,7 @@
         >
           <CalendarFrame></CalendarFrame>
           <CalendarContents {data}></CalendarContents>
-          <TimeIndicator row_start={(currentHour + 1) * 2}></TimeIndicator>
+          <TimeIndicator row_start={(current_hour + 1) * 2}></TimeIndicator>
         </div>
       </div>
     </div>
